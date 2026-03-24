@@ -1,108 +1,76 @@
-CREATE DATABASE school_management;
-USE school_management;
+CREATE DATABASE school_admin;
+USE school_admin;
 
-CREATE TABLE users (
-    user_id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE student (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100),
+    parent_name VARCHAR(100),
+    address VARCHAR(255),
+    student_class VARCHAR(50),
+    section VARCHAR(10),
+    email VARCHAR(100),
+    phone_number VARCHAR(15)
+);
+
+CREATE TABLE employee (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100),
     username VARCHAR(50) UNIQUE,
     password VARCHAR(100),
-    role ENUM('ADMIN','CLERK','TEACHER','PRINCIPAL'),
-    name VARCHAR(100),
+    role VARCHAR(20),  -- ADMIN, CLERK, TEACHER, PRINCIPAL
     email VARCHAR(100),
     phone VARCHAR(15)
 );
 
-CREATE TABLE students (
-    student_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100),
-    parent_name VARCHAR(100),
-    parent_phone VARCHAR(15),
-    address TEXT,
-    class VARCHAR(20),
-    section VARCHAR(5),
-    previous_performance VARCHAR(50),
-    admission_date DATE
-);
-
-CREATE TABLE fees (
-    fee_id INT AUTO_INCREMENT PRIMARY KEY,
-    student_id INT,
-    amount DECIMAL(10,2),
-    payment_date DATE,
-    payment_mode VARCHAR(20),
-    status ENUM('PAID','PENDING'),
-    FOREIGN KEY (student_id) REFERENCES students(student_id)
-);
-
 CREATE TABLE attendance (
-    attendance_id INT AUTO_INCREMENT PRIMARY KEY,
-    student_id INT,
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    student_id BIGINT,
     date DATE,
-    status ENUM('PRESENT','ABSENT'),
-    FOREIGN KEY (student_id) REFERENCES students(student_id)
+    status VARCHAR(20), -- Present / Absent
+
+    FOREIGN KEY (student_id) REFERENCES student(id)
+    ON DELETE CASCADE
 );
 
 CREATE TABLE performance (
-    performance_id INT AUTO_INCREMENT PRIMARY KEY,
-    student_id INT,
-    subject VARCHAR(50),
-    class_test_marks INT,
-    exam_marks INT,
-    grade VARCHAR(5),
-    remarks TEXT,
-    FOREIGN KEY (student_id) REFERENCES students(student_id)
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    student_id BIGINT,
+    subject VARCHAR(100),
+    marks INT,
+
+    FOREIGN KEY (student_id) REFERENCES student(id)
+    ON DELETE CASCADE
+);
+
+CREATE TABLE fee_payment (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    student_id BIGINT,
+    amount DOUBLE,
+    payment_date DATE,
+
+    FOREIGN KEY (student_id) REFERENCES student(id)
+    ON DELETE CASCADE
 );
 
 CREATE TABLE syllabus (
-    syllabus_id INT AUTO_INCREMENT PRIMARY KEY,
-    class VARCHAR(20),
-    subject VARCHAR(50),
-    details TEXT,
-    last_updated DATE
-);
-
-CREATE TABLE classrooms (
-    room_no VARCHAR(10) PRIMARY KEY,
-    capacity INT,
-    building VARCHAR(50)
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    class_name VARCHAR(50),
+    subject VARCHAR(100),
+    syllabus_details TEXT
 );
 
 CREATE TABLE class_schedule (
-    schedule_id INT AUTO_INCREMENT PRIMARY KEY,
-    class VARCHAR(20),
-    section VARCHAR(5),
-    subject VARCHAR(50),
-    teacher_id INT,
-    room_no VARCHAR(10),
-    schedule_time VARCHAR(50),
-    FOREIGN KEY (teacher_id) REFERENCES users(user_id),
-    FOREIGN KEY (room_no) REFERENCES classrooms(room_no)
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    class_name VARCHAR(50),
+    subject VARCHAR(100),
+    teacher_name VARCHAR(100)
 );
 
-SHOW TABLES;
+INSERT INTO employee (name, username, password, role, email, phone) VALUES
+('Admin User', 'admin', 'admin123', 'ADMIN', 'admin@gmail.com', '9999999999'),
+('Clerk User', 'clerk', 'clerk123', 'CLERK', 'clerk@gmail.com', '8888888888'),
+('Teacher User', 'teacher', 'teacher123', 'TEACHER', 'teacher@gmail.com', '7777777777'),
+('Principal User', 'principal', 'principal123', 'PRINCIPAL', 'principal@gmail.com', '6666666666');
 
-INSERT INTO users (username, password, role, name)
-VALUES ('admin', '1234', 'ADMIN', 'System Admin');
 
-INSERT INTO students (name, parent_name, class, section)
-VALUES ('Ravi Kumar', 'Suresh Kumar', '10', 'A');
-
-SELECT * FROM users;
-SELECT * FROM students;
-
-delete from students
-where student_id = 1;
-
-INSERT INTO users (username, password, role, name)
-VALUES 
-('clerk1', '1234', 'CLERK', 'Ramesh'),
-('teacher1', '1234', 'TEACHER', 'Suresh'),
-('principal1', '1234', 'PRINCIPAL', 'Meena');
-
-SELECT student_id, name FROM students;
-
-SELECT * FROM fees;
-
-SELECT * FROM attendance;
-
-SELECT * FROM performance;
 
