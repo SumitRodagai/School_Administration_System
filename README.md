@@ -184,12 +184,6 @@ http://localhost:8080
 
 ---
 
-## 👨‍💻 Author
-
-**Sagar**
-
----
-
 ## 📄 License
 
 This project is for educational purposes.
