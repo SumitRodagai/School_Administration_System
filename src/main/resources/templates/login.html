@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>School Login</title>
+
+<style>
+
+/* Background */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+}
+
+/* Center container */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Login card */
+.login-box {
+    background: white;
+    padding: 35px;
+    width: 320px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+/* Title */
+.login-box h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Inputs */
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+/* Button */
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background: #4facfe;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Hover */
+button:hover {
+    background: #00c6ff;
+}
+
+/* Error */
+.error {
+    color: red;
+    margin-top: 10px;
+}
+
+/* Footer */
+.footer {
+    margin-top: 15px;
+    font-size: 13px;
+    color: #888;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="login-box">
+
+<h2>🏫 School Login</h2>
+
+<form action="/login" method="post">
+
+<input type="text" name="username" placeholder="Enter Username" required>
+
+<input type="password" name="password" placeholder="Enter Password" required>
+
+<button type="submit">Login</button>
+
+</form>
+
+<p th:text="${error}" class="error"></p>
+
+<div class="footer">
+    School Administration System
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

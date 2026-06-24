@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Fee Report</title>
+
+<style>
+
+/* Background */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+}
+
+/* Title */
+h2 {
+    text-align: center;
+    color: white;
+    margin-top: 30px;
+}
+
+/* Container */
+.table-container {
+    width: 80%;
+    margin: 40px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Header */
+th {
+    background: #4facfe;
+    color: white;
+    padding: 12px;
+}
+
+/* Cells */
+td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Hover */
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Summary Box */
+.summary {
+    margin-top: 20px;
+    text-align: right;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Back Button */
+.back-btn {
+    display: block;
+    width: 220px;
+    margin: 20px auto;
+    text-align: center;
+    padding: 12px;
+    background: white;
+    color: #4facfe;
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    background: #4facfe;
+    color: white;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .table-container {
+        width: 95%;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2>📊 Fee Payment Report</h2>
+
+<div class="table-container">
+
+<table>
+
+<tr>
+<th>Student ID</th>
+<th>Amount</th>
+<th>Date</th>
+</tr>
+
+<tr th:each="f : ${fees}">
+<td th:text="${f.studentId}"></td>
+<td th:text="${f.amount}"></td>
+<td th:text="${f.paymentDate}"></td>
+</tr>
+
+</table>
+
+<!-- Optional Total -->
+<div class="summary">
+    Total Collected: ₹ <span th:text="${totalAmount}"></span>
+</div>
+
+</div>
+
+<a href="/feeList" class="back-btn">⬅ Back to Fee List</a>
+
+</body>
+</html>

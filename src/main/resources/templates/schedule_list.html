@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Schedule List</title>
+
+<style>
+body {
+    background-color: powderblue;
+    text-align: center;
+}
+
+table {
+    margin: auto;
+    border-collapse: collapse;
+    width: 70%;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid black;
+}
+
+th {
+    background-color: lightgray;
+}
+
+a {
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.edit {
+    background-color: orange;
+    color: white;
+}
+
+.delete {
+    background-color: red;
+    color: white;
+}
+</style>
+
+</head>
+
+<body>
+
+<h2>Class Schedule List</h2>
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Class</th>
+<th>Subject</th>
+<th>Teacher</th>
+<th>Action</th>
+</tr>
+
+<tr th:each="s : ${schedules}">
+
+<td th:text="${s.id}"></td>
+<td th:text="${s.className}"></td>
+<td th:text="${s.subject}"></td>
+<td th:text="${s.teacherName}"></td>
+
+<td>
+    <a class="edit"
+       th:href="@{/editSchedule/{id}(id=${s.id})}">
+       Edit
+    </a>
+
+    <a class="delete"
+       th:href="@{/deleteSchedule/{id}(id=${s.id})}"
+       onclick="return confirm('Delete this record?')">
+       Delete
+    </a>
+</td>
+
+</tr>
+
+</table>
+
+<br><br>
+
+<a th:href="@{/schedule}">➕ Add New Schedule</a>
+
+</body>
+</html>

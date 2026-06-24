@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Class Schedule</title>
+
+<style>
+
+/* Background */
+body{
+    font-family: Arial;
+    background: linear-gradient(to right, #74ebd5, #acb6e5);
+    text-align:center;
+}
+
+/* Card */
+.container{
+    background:white;
+    width:350px;
+    margin:auto;
+    margin-top:60px;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0px 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Inputs */
+input, select{
+    width:90%;
+    padding:8px;
+    margin-top:5px;
+}
+
+/* Button */
+button{
+    padding:10px 20px;
+    background:#007bff;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#0056b3;
+}
+
+/* Link Button */
+.link-btn{
+    display:inline-block;
+    margin-top:20px;
+    padding:10px 20px;
+    background:#28a745;
+    color:white;
+    text-decoration:none;
+    border-radius:5px;
+}
+
+.link-btn:hover{
+    background:#218838;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>📅 Class Scheduling</h2>
+
+<form th:action="@{/saveSchedule}" method="post">
+
+Class:
+<br>
+<input type="text" name="className" placeholder="Enter Class" required>
+
+<br><br>
+
+Subject:
+<br>
+<select name="subject" required>
+    <option value="">-- Select Subject --</option>
+
+    <option th:each="s : ${subjects}"
+            th:value="${s.subject}"
+            th:text="${s.subject}">
+    </option>
+</select>
+
+<br><br>
+
+Teacher Name:
+<br>
+<input type="text" name="teacherName" placeholder="Enter Teacher Name" required>
+
+<br><br>
+
+<button type="submit">💾 Save Schedule</button>
+
+</form>
+
+<br>
+
+<a th:href="@{/scheduleList}" class="link-btn">
+📋 View Schedule List
+</a>
+
+</div>
+
+</body>
+</html>

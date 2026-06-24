@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Syllabus Report</title>
+
+<style>
+
+/* Background */
+body{
+    font-family: Arial;
+    background: linear-gradient(to right, #74ebd5, #acb6e5);
+    text-align:center;
+}
+
+/* Container */
+.container{
+    background:white;
+    width:85%;
+    margin:auto;
+    margin-top:40px;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0px 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Table */
+table{
+    border-collapse:collapse;
+    width:100%;
+    margin-top:20px;
+}
+
+th, td{
+    padding:12px;
+    border:1px solid #ddd;
+    text-align:center;
+}
+
+th{
+    background:#007bff;
+    color:white;
+}
+
+/* Row hover */
+tr:hover{
+    background:#f5f5f5;
+}
+
+/* Back Button */
+.back-btn{
+    display:inline-block;
+    margin-top:20px;
+    padding:10px 20px;
+    background:black;
+    color:white;
+    text-decoration:none;
+    border-radius:5px;
+}
+
+.back-btn:hover{
+    background:#333;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>📘 Syllabus Details</h2>
+
+<table>
+
+<tr>
+<th>Class</th>
+<th>Subject</th>
+<th>Syllabus</th>
+</tr>
+
+<tr th:each="s : ${syllabusList}">
+<td th:text="${s.className}"></td>
+<td th:text="${s.subject}"></td>
+<td th:text="${s.syllabusDetails}"></td>
+</tr>
+
+</table>
+
+<br>
+
+<a href="/reports" class="back-btn">
+⬅ Back to Reports
+</a>
+
+</div>
+
+</body>
+</html>

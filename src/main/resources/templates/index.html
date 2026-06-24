@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>School Administration</title>
+
+<style>
+
+/* Background */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+}
+
+/* Header */
+h1 {
+    text-align: center;
+    color: white;
+    margin-top: 30px;
+}
+
+/* Container */
+.container {
+    width: 90%;
+    margin: 40px auto;
+}
+
+/* Grid */
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Card */
+.card {
+    background: white;
+    width: 220px;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+/* Hover */
+.card:hover {
+    transform: translateY(-8px);
+}
+
+/* Links */
+.card a {
+    text-decoration: none;
+    color: #4facfe;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Logout button */
+.logout {
+    display: block;
+    width: 200px;
+    margin: 30px auto;
+    text-align: center;
+    padding: 12px;
+    background: white;
+    color: red;
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.logout:hover {
+    background: red;
+    color: white;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .card {
+        width: 90%;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>🏫 School Administration System</h1>
+
+<div class="container">
+
+<div class="grid">
+
+<!-- ADMIN -->
+<div class="card" th:if="${role == 'ADMIN'}">
+    <a href="/admission">📋 Student Admission</a>
+</div>
+
+<div class="card" th:if="${role == 'ADMIN' or role == 'CLERK'}">
+    <a href="/students">👨‍🎓 View Students</a>
+</div>
+
+<div class="card" th:if="${role == 'ADMIN'}">
+    <a href="/attendance">📅 Attendance</a>
+</div>
+
+<div class="card" th:if="${role == 'ADMIN'}">
+    <a href="/fees">💰 Fee Payment</a>
+</div>
+
+<div class="card" th:if="${role == 'ADMIN'}">
+    <a href="/performance">📊 Performance</a>
+</div>
+
+<div class="card" th:if="${role == 'ADMIN'}">
+    <a href="/syllabus">📘 Syllabus</a>
+</div>
+
+<div class="card" th:if="${role == 'ADMIN'}">
+    <a href="/schedule">🗓 Class Scheduling</a>
+</div>
+
+<div class="card" th:if="${role == 'ADMIN'}">
+    <a href="/reports">📑 Reports</a>
+</div>
+
+<div class="card" th:if="${role == 'ADMIN'}">
+    <a href="/analysis">📈 Dashboard</a>
+</div>
+
+<!-- CLERK -->
+<div class="card" th:if="${role == 'CLERK'}">
+    <a href="/admission">📋 Student Admission</a>
+</div>
+
+<div class="card" th:if="${role == 'CLERK'}">
+    <a href="/fees">💰 Fee Payment</a>
+</div>
+
+<!-- TEACHER -->
+<div class="card" th:if="${role == 'TEACHER'}">
+    <a href="/attendance">📅 Attendance</a>
+</div>
+
+<div class="card" th:if="${role == 'TEACHER'}">
+    <a href="/performance">📊 Performance</a>
+</div>
+
+<div class="card" th:if="${role == 'TEACHER'}">
+    <a href="/syllabus">📘 Syllabus</a>
+</div>
+
+<!-- PRINCIPAL -->
+<div class="card" th:if="${role == 'PRINCIPAL'}">
+    <a href="/schedule">🗓 Class Scheduling</a>
+</div>
+
+<div class="card" th:if="${role == 'PRINCIPAL'}">
+    <a href="/reports">📑 Reports</a>
+</div>
+
+<div class="card" th:if="${role == 'PRINCIPAL'}">
+    <a href="/analysis">📈 Dashboard</a>
+</div>
+
+</div>
+
+</div>
+
+<a href="/logout" class="logout">🚪 Logout</a>
+
+</body>
+</html>

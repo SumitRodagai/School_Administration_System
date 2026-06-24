@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Student Performance Report</title>
+
+<style>
+
+/* Background */
+body{
+    font-family: Arial;
+    background: linear-gradient(to right, #74ebd5, #acb6e5);
+    text-align:center;
+}
+
+/* Container */
+.container{
+    background:white;
+    width:80%;
+    margin:auto;
+    margin-top:40px;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0px 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Form */
+input{
+    padding:8px;
+    width:150px;
+}
+
+button{
+    padding:8px 15px;
+    background:#007bff;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#0056b3;
+}
+
+/* Table */
+table{
+    border-collapse:collapse;
+    width:100%;
+    margin-top:20px;
+}
+
+th,td{
+    border:1px solid #ddd;
+    padding:10px;
+    text-align:center;
+}
+
+th{
+    background:#007bff;
+    color:white;
+}
+
+/* Total row */
+.total-row{
+    background:#f2f2f2;
+    font-weight:bold;
+}
+
+/* Percentage */
+.percentage{
+    font-size:20px;
+    margin-top:15px;
+    color:#333;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>📊 Student Performance Report</h2>
+
+<!-- FORM -->
+<form action="/viewReport" method="get">
+
+Student ID:
+<input type="number" name="studentId" placeholder="Enter ID" required>
+
+<button type="submit">View Report</button>
+
+</form>
+
+<!-- REPORT TABLE -->
+<div th:if="${performanceList != null}">
+
+<table>
+
+<tr>
+<th>Subject</th>
+<th>Obtained Marks</th>
+<th>Total Marks</th>
+</tr>
+
+<tr th:each="p : ${performanceList}">
+
+<td th:text="${p.subject}"></td>
+<td th:text="${p.marks}"></td>
+<td>100</td>
+
+</tr>
+
+<tr class="total-row">
+
+<td>Total</td>
+<td th:text="${total}"></td>
+<td th:text="${totalMarks}"></td>
+
+</tr>
+
+</table>
+
+<!-- PERCENTAGE -->
+<div class="percentage">
+Percentage : <span th:text="${percentage}"></span> %
+</div>
+
+</div>
+
+<br>
+
+<a href="/performance">
+<button style="background:green;">➕ Add Performance</button>
+</a>
+
+</div>
+
+</body>
+</html>

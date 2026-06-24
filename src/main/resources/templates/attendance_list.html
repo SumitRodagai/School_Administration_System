@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Attendance List</title>
+
+<style>
+
+/* Background */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+}
+
+/* Title */
+h2 {
+    text-align: center;
+    color: white;
+    margin-top: 30px;
+}
+
+/* Table container */
+.table-container {
+    width: 80%;
+    margin: 40px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Header */
+th {
+    background: #4facfe;
+    color: white;
+    padding: 12px;
+}
+
+/* Rows */
+td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Hover row */
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Buttons */
+a {
+    padding: 6px 12px;
+    text-decoration: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 14px;
+}
+
+/* Edit button */
+.edit {
+    background-color: orange;
+}
+
+/* Delete button */
+.delete {
+    background-color: red;
+}
+
+/* Add button */
+.add-btn {
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    text-align: center;
+    padding: 12px;
+    background: white;
+    color: #4facfe;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+/* Hover */
+.add-btn:hover {
+    background: #4facfe;
+    color: white;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .table-container {
+        width: 95%;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2>📋 Attendance Records</h2>
+
+<div class="table-container">
+
+<table>
+
+<tr>
+<th>Student ID</th>
+<th>Date</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+
+<tr th:each="a : ${attendanceList}">
+
+<td th:text="${a.studentId}"></td>
+<td th:text="${a.date}"></td>
+<td th:text="${a.status}"></td>
+
+<td>
+    <a class="edit"
+       th:href="@{/editAttendance/{id}(id=${a.id})}">
+       Edit
+    </a>
+
+    <a class="delete"
+       th:href="@{/deleteAttendance/{id}(id=${a.id})}"
+       onclick="return confirm('Are you sure to delete?')">
+       Delete
+    </a>
+</td>
+
+</tr>
+
+</table>
+
+</div>
+
+<a href="/attendance" class="add-btn">➕ Add Attendance</a>
+
+</body>
+</html>

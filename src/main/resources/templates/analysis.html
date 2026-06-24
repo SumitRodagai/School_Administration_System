@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>School Analysis Dashboard</title>
+
+<style>
+
+/* Background */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+}
+
+/* Title */
+h1 {
+    text-align: center;
+    color: white;
+    margin-top: 30px;
+}
+
+/* Dashboard layout */
+.dashboard {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+/* Card Design */
+.card {
+    background: white;
+    padding: 25px;
+    width: 220px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+/* Hover effect */
+.card:hover {
+    transform: translateY(-10px);
+}
+
+/* Card title */
+.card h2 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Numbers */
+.card p {
+    font-size: 22px;
+    font-weight: bold;
+    color: #4facfe;
+}
+
+/* Button */
+.back-btn {
+    display: block;
+    width: 200px;
+    margin: 40px auto;
+    padding: 12px;
+    text-align: center;
+    background: white;
+    color: #4facfe;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+/* Button hover */
+.back-btn:hover {
+    background: #4facfe;
+    color: white;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .dashboard {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>📊 School Analysis Dashboard</h1>
+
+<div class="dashboard">
+
+<div class="card">
+<h2>Total Students</h2>
+<p th:text="${students}"></p>
+</div>
+
+<div class="card">
+<h2>Total Fees Collected</h2>
+<p th:text="${fees}"></p>
+</div>
+
+<div class="card">
+<h2>Attendance Records</h2>
+<p th:text="${attendance}"></p>
+</div>
+
+<div class="card">
+<h2>Average Marks</h2>
+<p th:text="${averageMarks}"></p>
+</div>
+
+</div>
+
+<a href="/index" class="back-btn">⬅ Back to Dashboard</a>
+
+</body>
+</html>

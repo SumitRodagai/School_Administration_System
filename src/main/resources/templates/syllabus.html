@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Syllabus Module</title>
+
+<style>
+
+/* Background */
+body{
+    font-family: Arial;
+    background: linear-gradient(to right, #74ebd5, #acb6e5);
+    text-align:center;
+}
+
+/* Container */
+.container{
+    background:white;
+    width:400px;
+    margin:auto;
+    margin-top:60px;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0px 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Inputs */
+input, textarea{
+    width:90%;
+    padding:8px;
+    margin-top:5px;
+}
+
+/* Button */
+button{
+    padding:10px 20px;
+    background:#007bff;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#0056b3;
+}
+
+/* Link button */
+.link-btn{
+    display:inline-block;
+    margin-top:20px;
+    padding:10px 20px;
+    background:#28a745;
+    color:white;
+    text-decoration:none;
+    border-radius:5px;
+}
+
+.link-btn:hover{
+    background:#218838;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>📘 Syllabus Entry</h2>
+
+<form action="/saveSyllabus" method="post">
+
+Class:
+<br>
+<input type="text" name="className" placeholder="Enter Class" required>
+
+<br><br>
+
+Subject:
+<br>
+<input type="text" name="subject" placeholder="Enter Subject" required>
+
+<br><br>
+
+Syllabus Details:
+<br>
+<textarea name="syllabusDetails" rows="3" placeholder="Enter syllabus details..." required></textarea>
+
+<br><br>
+
+<button type="submit">💾 Save Syllabus</button>
+
+</form>
+
+<br>
+
+<a href="/syllabusList" class="link-btn">
+📄 View Syllabus List
+</a>
+
+</div>
+
+</body>
+</html>
